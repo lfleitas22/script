@@ -23,6 +23,8 @@ else
 fi
 
 #Actualización de paquetes
+mkdir /script
+touch /script/registre.txt
 
 apt-get update >/dev/null 2>&1
 
