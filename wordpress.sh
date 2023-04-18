@@ -47,7 +47,7 @@ else
 fi
 
 #Instalación del mariadb-server 
-if [ $(dpkg-query -W -f='${Status}' 'mariadb-server-10.4' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'mariadb-server' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	echo -e "${Azul}Mariadb-server${Defecto} no está instalado" 
 	echo "Mariadb-server no está instalado" >>/script/registro.txt
 
