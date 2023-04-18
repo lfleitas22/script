@@ -312,7 +312,7 @@ else
 fi
 
 #Cambiar de directorio el archivo wordpress
-mv latest-es_ES/* /var/www/html/ >/dev/null 2>&1
+mv wordpress/ /var/www/html/ >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	echo -e "${Verde}El cambio de directorio se realizó correctamente${Defecto}"
 	echo "El cambio de directorio se realizó correctamente" >>/script/registro.txt
