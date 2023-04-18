@@ -5,14 +5,21 @@ Defecto='\e[39m'
 Rojo='\e[31m'
 Verde='\e[32m'
 Azul='\e[36m'
-subrayado='\e[4m' 
+subrayado='\e[4m'
+
+echo -e "${On_Purple}SCRIPT AUTOMÀTIC PER INSTAL·LAR EL SERVIDOR WORDPRESS${NORMAL}"
 
 #Comprobación de usuario
 if [ $(whoami) == "root" ]; then
-	echo -e "Tienes los permisos"
+        echo -e "${VERDE}Ets root.${NORMAL}"
+        # Color verd
 else
-	echo "Para instalar los paquetes necesarios has de tener permisos como root"
-	exit
+        echo -e "${ROJO}No ets root.${NORMAL}"
+        # Color vermell
+        echo -e "${ROJOBK}No tens permisos per executar aquest script, només pots ser executat per l'usuari root.${NORMAL}"
+        # Fons vermell
+        # Exit fa que sortim de l'script.
+        exit
 fi
 
 #Actualización de paquetes
@@ -22,7 +29,7 @@ apt-get update >/dev/null 2>&1
 #Instalación del paquete LAMP
 
 #Instalación del Apache2
-if [ $(dpkg-query -W -f='${Status}' 'apache2' | grep -c "ok installed") -eq 0 ] >/dev/null 2>&1; then 
+if [ $(dpkg-query -W -f='${Status}' 'apache2' 2>/dev/null | grep -c "ok installed") -eq 0 ] >/dev/null 2>&1; then 
 	echo -e "${Azul}Apache2${Defecto} no esta instalado"
 	echo  "Apache2 no está instalado" >/script/registro.txt
 	apt-get -y install apache2 >/dev/null 2>&1
@@ -40,7 +47,7 @@ else
 fi
 
 #Instalación del mariadb-server 
-if [ $(dpkg-query -W -f='${Status}' 'mariadb-server-10.4' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'mariadb-server-10.4' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	echo -e "${Azul}Mariadb-server${Defecto} no está instalado" 
 	echo "Mariadb-server no está instalado" >>/script/registro.txt
 
@@ -60,7 +67,7 @@ else
 fi
 
 #Instalación del paquete php 7.4
-if [ $(dpkg-query -W -f='${Status}' 'php7.4' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'php7.4' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	echo "Php no está instalado" >>/script/registro.txt
 	echo -e "${Azul}Php${Defecto} no está instalado"
 
@@ -84,7 +91,7 @@ fi
 # Instalación de las expansiones de php
 
 # Instalación de php-mysql
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-mysql' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-mysql' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	
 	echo -e "${Azul}php-mysql${Defecto} no está instalado" 
 	echo "php-mysql no está instalado" >>/script/registro.txt
@@ -105,7 +112,7 @@ else
 fi
 
 # Instalación de php-xml
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-xml' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-xml' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	
 	echo -e "${Azul}php-xml${Defecto} no está instalado" 
 	echo "php-xml no está instalado" >>/script/registro.txt
@@ -126,7 +133,7 @@ else
 fi
 
 # Instalación de php-mbstring
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-mbstring' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-mbstring' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	
 	echo -e "${Azul}php-mbstring${Defecto} no está instalado"
 	echo "php-mbstring no está instalado" >>/script/registro.txt
@@ -146,7 +153,7 @@ else
 fi
 
 # Instalación de php-curl
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-curl' | grep -c "ok installed") -eq 0 ];then 
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-curl' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 
 	echo -e "${Azul}php-curl${Defecto} no está instalado"
 	echo "php-curl no está instalado" >>/script/registro.txt
@@ -165,7 +172,7 @@ else
 fi
 
 # Instalación de php-zip
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-zip' | grep -c "ok installed") -eq 0 ];then
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-zip' 2>/dev/null | grep -c "ok installed") -eq 0 ];then
 
 	echo -e "${Azul}php-zip${Defecto} no está instalado"
 	echo "php-zip no está instalado" >>/script/registro.txt
@@ -184,7 +191,7 @@ else
 fi
 
 # Instalación de php-gd
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-gd' | grep -c "ok installed") -eq 0 ];then
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-gd' 2>/dev/null | grep -c "ok installed") -eq 0 ];then
 
 	echo -e "${Azul}php-gd${Defecto} no está instalado"
 	echo "php-gd no está instalado" >>/script/registro.txt
@@ -204,7 +211,7 @@ else
 fi
 
 # Instalación de php-intl
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-intl' | grep -c "ok installed") -eq 0 ];then
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-intl' 2>/dev/null | grep -c "ok installed") -eq 0 ];then
 
 	echo -e "${Azul}php-intl${Defecto} no está instalado"
 	echo "php-intl no está instalado" >>/script/registro.txt
@@ -223,7 +230,7 @@ else
 fi
 
 # Instalación de php-soap
-if [ $(dpkg-query -W -f='${Status}' 'php7.4-soap' | grep -c "ok installed") -eq 0 ];then
+if [ $(dpkg-query -W -f='${Status}' 'php7.4-soap' 2>/dev/null | grep -c "ok installed") -eq 0 ];then
 
 	echo -e "${Azul}php-soap${Defecto} no está instalado"
 	echo "php-soap no está instalado" >>/script/registro.txt
@@ -347,11 +354,13 @@ fi
 
 systemctl restart apache2 >/dev/null 2>&1
 if [ $? -eq 0 ];then
-	echo -e "${Verde}Reinicio correcto${Defecto}"
-	echo "Reinicio correcto" >>/script/registro.txt
+        echo "Apache reiniciat correctament." >>/script/registre.txt
+        echo -e "${VERDE}Apache reiniciat correctament.${NORMAL}"
+        echo -e "${On_Purple}PER ACCEDIR A ROUNDCUBE: http://127.0.0.1:port/installer/ AL NAVEGADOR${NORMAL}"
 else
-	echo -e "${Rojo}Error al reiniciar el servidor${Defecto}"
-	echo "Error al reiniciar el servidor" >>/script/registro.txt
+        echo  "Apache no reiniciat correctament.">>/script/registre.txt
+        echo -e "${ROJO}Apache no reiniciat correctament.${NORMAL}"
+        exit
 fi
 
-echo "FIN DE LA INSTALACIÓN"
+
