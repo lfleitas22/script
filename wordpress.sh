@@ -302,7 +302,7 @@ else
 fi
 
 #Eliminación del fichero index
-rm /var/www/html/index.html >/dev/null 2>&1
+rm /var/www/html/ >/dev/null 2>&1
 if [ $? -eq 0 ];then
 	echo -e "${Verde}La eliminación del fichero index fue exitosa${Defecto}"
 	echo "La eliminación del fichero index fue exitosa" >>/script/registro.txt
@@ -312,7 +312,7 @@ else
 fi
 
 #Cambiar de directorio el archivo wordpress
-mv wordperss/* /var/www/html/ >/dev/null 2>&1
+mv wordperss/ /var/www/html/ >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	echo -e "${Verde}El cambio de directorio se realizó correctamente${Defecto}"
 	echo "El cambio de directorio se realizó correctamente" >>/script/registro.txt
