@@ -96,7 +96,7 @@ else
 fi
 
 #Inserción de la clave
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
+apt-key adv –recv-keys –keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
         echo "La clau s'ha col·locat correctament." >>/script/registre.txt
         echo -e "${VERDE}La clau s'ha col·locat correctament${NORMAL}"
@@ -573,7 +573,7 @@ systemctl restart apache2
 if [ $? -eq 0 ];then
         echo "Apache reiniciat correctament." >>/script/registre.txt
         echo -e "${VERDE}Apache reiniciat correctament.${NORMAL}"
-        echo -e "${On_Purple}PER ACCEDIR A ROUNDCUBE: http://127.0.0.1:port/installer/ AL NAVEGADOR${NORMAL}"
+        echo -e "${On_Purple}PER ACCEDIR A MOODLE: http://127.0.0.1:port/installer/ AL NAVEGADOR${NORMAL}"
 else
         echo  "Apache no reiniciat correctament.">>/script/registre.txt
         echo -e "${ROJO}Apache no reiniciat correctament.${NORMAL}"
