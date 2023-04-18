@@ -82,7 +82,7 @@ fi
 if [ $(dpkg-query -W -f='${Status}' 'dirmngr' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
 	    echo "dirmngr no está instal·lat."  >>/script/registre.txt
 	    echo "dirmngr no está instal·lat." 
-	    apt-get -y install software-properties-common  >/dev/null 2>&1
+	    apt-get -y install dirmngr  >/dev/null 2>&1
 	    if [ $? -eq 0 ]; then
 	            echo "dirmngr instal·lat correctament." >>/script/registre.txt
 		          echo -e "${VERDE}dirmngr instal·lat correctament.${NORMAL}"
@@ -96,7 +96,7 @@ else
 fi
 
 #Inserción de la clave
-apt-key adv –recv-keys –keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
         echo "La clau s'ha col·locat correctament." >>/script/registre.txt
         echo -e "${VERDE}La clau s'ha col·locat correctament${NORMAL}"
