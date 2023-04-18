@@ -28,7 +28,7 @@ fi
 
 # Creació del document registre.txt
 mkdir /script 2>/dev/null
-/script/registre.txt 2>/dev/null
+touch /script/registre.txt 2>/dev/null
 
 # Actualització dels repositoris
 apt-get update >/dev/null 2>&1
