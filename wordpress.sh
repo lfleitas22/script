@@ -122,7 +122,7 @@ fi
 #Comprovem si la base de dades wordpress existeix
 dbname="wordpress"
 if [ -d "/var/lib/mysql/$dbname" ]; then
-        echo -e "${VERDE}La base de dades glpi existeix.${NORMAL}"
+        echo -e "${VERDE}La base de dades wordpress existeix.${NORMAL}"
 else
         echo -e "La base de dades no existeix."
         mysql -u root -e "CREATE DATABASE wordpress;"
@@ -132,9 +132,9 @@ else
         mysql -u root -e "exit"
         # Tornem a comprovar si existeix per assegurar-nos que s'ha creat.
         if [ -d "/var/lib/mysql/$dbname" ]; then
-                echo -e "${VERDE}La base de dades glpi s'ha creat correctament.${NORMAL}"
+                echo -e "${VERDE}La base de dades wordpress s'ha creat correctament.${NORMAL}"
         else
-                echo -e "${ROJO}Malauradament, la base de dades no s'ha creat correctament.${NORMAL}"
+                echo -e "${ROJO}Malauradament, la wordpress no s'ha creat correctament.${NORMAL}"
                 exit
         fi
 fi
@@ -486,8 +486,8 @@ if [ $? -eq 0 ]; then
         echo "Arxiu d'instal·lació de Wordpress descomprimit correctament." >>/script/registre.txt
         echo -e "${VERDE}Arxiu d'instal·lació de Wordpress descomprimit correctament.${NORMAL}"
 else
-        echo  "L'arxiu de Moodle no s'ha pogut descomprimir.">>/script/registre.txt
-        echo -e "${ROJO}L'arxiu de Moodle no s'ha pogut descomprimir.${NORMAL}"
+        echo  "L'arxiu de Wordpress no s'ha pogut descomprimir.">>/script/registre.txt
+        echo -e "${ROJO}L'arxiu de Wordpress no s'ha pogut descomprimir.${NORMAL}"
         exit
 fi
 
