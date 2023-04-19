@@ -1,4 +1,5 @@
-
+#!/bin/bash
+clear
 echo "Introdueix Nom + El Primer Cognom:"
 read nom
 clear
