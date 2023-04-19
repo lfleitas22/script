@@ -92,7 +92,7 @@ if [ $(dpkg-query -W -f='${Status}' 'apache2' >/dev/null 2>&1 | grep -c "ok inst
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Cyan}Apache2 instal.at correctament\n"
-		echo "Apache2 instal.at correctament" >>/script/registre.txt
+		echo "Apache2 instal.at correctament" >> /var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Yellow}Apache2 instal.lat incorrectament\n"
@@ -114,7 +114,7 @@ if [ $(dpkg-query -W -f='${Status}' 'software-properties-common' >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Cyan}Software-properties-common instal.at correctament\n"
-		echo "Software-properties-common instal.at correctament" >>/script/registre.txt
+		echo "Software-properties-common instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Yellow}Software-properties-common instal.lat incorrectament"
@@ -135,7 +135,7 @@ if [ $(dpkg-query -W -f='${Status}' 'dirmngr' >/dev/null 2>&1 | grep -c "ok inst
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}Dirmngr instal.at correctament\n"
-		echo "Dirmngr instal.at correctament" >>/script/registre.txt
+		echo "Dirmngr instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}Dirmngr instal.lat incorrectament"
@@ -182,7 +182,7 @@ if [ $(dpkg-query -W -f='${Status}' 'mariadb-server' >/dev/null 2>&1 | grep -c "
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}Mariadb-server instal.at correctament\n"
-		echo "Mariadb-server instal.at correctament" >>/script/registre.txt
+		echo "Mariadb-server instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}Mariadb-server instal.lat incorrectament"
@@ -207,7 +207,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php' >/dev/null 2>&1 | grep -c "ok installe
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP instal.at correctament\n"
-		echo "PHP instal.at correctament" >>/script/registre.txt
+		echo "PHP instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP instal.lat incorrectament"
@@ -230,7 +230,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php-mysql' >/dev/null 2>&1 | grep -c "ok in
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP-mysql instal.at correctament\n"
-		echo "PHP-mysql instal.at correctament" >>/script/registre.txt
+		echo "PHP-mysql instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP-mysql instal.lat incorrectament"
@@ -253,7 +253,7 @@ wget https://github.com/glpi-project/glpi/releases/download/10.0.7/glpi-10.0.7.t
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}GLPI descarregat correctament\n"
-	echo "GLPI descarregat correctament" >>/script/registre.txt
+	echo "GLPI descarregat correctament" >>/var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error al descarregar GLPI"
@@ -266,7 +266,7 @@ tar zxvf glpi-10.0.7.tgz >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Descompresio correcta\n"
-	echo "Descompresio correcta" >>/script/registre.txt
+	echo "Descompresio correcta" >>/script//var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error de descompresio"
@@ -279,8 +279,7 @@ rm -R /var/www/html/
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Eliminacio correcte\n"
-	echo "Eliminacio correcte" >>/script/registre.txt
-else
+	echo "Eliminacio correcte" >>/var/logs/registres/install/glpi.log
 
 	echo -e "${Red}Error al eliminar"
 	exit
@@ -291,7 +290,7 @@ mv  glpi /var/www/html/
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Moviment correcta\n"
-	echo "Moviment correcta" >>/script/registre.txt
+	echo "Moviment correcta" >>/var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error al moure"
@@ -314,7 +313,7 @@ if [ $(dpkg-query -W -f='${Status}' 'lsb-release' >/dev/null 2>&1 | grep -c "ok 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}lsb-release instal.at correctament\n"
-		echo "lsb-release instal.at correctament" >>/script/registre.txt
+		echo "lsb-release instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}lsb-release instal.lat incorrectament"
@@ -336,7 +335,7 @@ if [ $(dpkg-query -W -f='${Status}' 'apt-transport-https' >/dev/null 2>&1 | grep
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}apt-transport-https instal.at correctament\n"
-		echo "apt-transport-https instal.at correctament" >>/script/registre.txt
+		echo "apt-transport-https instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}apt-transport-https instal.lat incorrectament"
@@ -358,7 +357,7 @@ if [ $(dpkg-query -W -f='${Status}' 'ca-certificates' >/dev/null 2>&1 | grep -c 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}ca-certificates instal.at correctament\n"
-		echo "ca-certificates instal.at correctament" >>/script/registre.txt
+		echo "ca-certificates instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}ca-certificates instal.lat incorrectament"
@@ -403,7 +402,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4' >/dev/null 2>&1 | grep -c "ok insta
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4 instal.at correctament\n"
-		echo "PHP7.4 instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4 instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4 instal.lat incorrectament"
@@ -422,7 +421,7 @@ a2dismod php7.3 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Desactiviacio php7.3 correcte\n"
-	echo "Desactiviacio php7.3 correcte" >>/script/registre.txt
+	echo "Desactiviacio php7.3 correcte" >>/var/logs/registres/install/glpi.log
 else
 
 	echo  -e "${Red}Error al desactivar php7.3"
@@ -433,7 +432,7 @@ a2enmod php7.4 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Activació php7.4 correcte\n"
-	echo "Activació php7.4 correcte" >>/script/registre.txt
+	echo "Activació php7.4 correcte" >>/var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error al activar php7.4"
@@ -449,7 +448,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-apcu' >/dev/null 2>&1 | grep -c "ok 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-apcu instal.at correctament\n"
-		echo "PHP7.4-apcu instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-apcu instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-apcu instal.lat incorrectament"
@@ -470,7 +469,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-bz2' >/dev/null 2>&1 | grep -c "ok i
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-bz2 instal.at correctament\n"
-		echo "PHP7.4-bz2 instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-bz2 instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-bz2 instal.lat incorrectament"
@@ -491,7 +490,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-curl' >/dev/null 2>&1 | grep -c "ok 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-curl instal.at correctament\n"
-		echo "PHP7.4-curl instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-curl instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-curl instal.lat incorrectament"
@@ -512,7 +511,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-gd' >/dev/null 2>&1 | grep -c "ok in
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-gd instal.at correctament\n"
-		echo "PHP7.4-gd instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-gd instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-gd instal.lat incorrectament"
@@ -533,7 +532,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-intl' >/dev/null 2>&1 | grep -c "ok 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-intl instal.at correctament\n"
-		echo "PHP7.4-intl instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-intl instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}.4-intl instal.lat incorrectament"
@@ -554,7 +553,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-ldap' >/dev/null 2>&1 | grep -c "ok 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-ldap instal.at correctament\n"
-		echo "PHP7.4-ldap instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-ldap instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-ldap instal.lat incorrectament"
@@ -575,7 +574,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-mbstring' >/dev/null 2>&1 | grep -c 
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-mbstring instal.at correctament\n"
-		echo "PHP7.4-mbstring instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-mbstring instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-mbstring instal.lat incorrectament"
@@ -596,7 +595,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-xml' >/dev/null 2>&1 | grep -c "ok i
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-xml instal.at correctament\n"
-		echo "PHP7.4-xml instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-xml instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-xml instal.lat incorrectament"
@@ -617,7 +616,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-xmlrpc' >/dev/null 2>&1 | grep -c "o
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-xmlrpc instal.at correctament\n"
-		echo "PHP7.4-xmlrpc instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-xmlrpc instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-xmlrpc instal.lat incorrectament"
@@ -638,7 +637,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-zip' >/dev/null 2>&1 | grep -c "ok i
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-zip instal.at correctament\n"
-		echo "PHP7.4-zip instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-zip instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-zip instal.lat incorrectament"
@@ -659,7 +658,7 @@ if [ $(dpkg-query -W -f='${Status}' 'php7.4-mysql' >/dev/null 2>&1 | grep -c "ok
 	if [ $? -eq 0 ]; then
 
 		echo -e "${Green}PHP7.4-mysql instal.at correctament\n"
-		echo "PHP7.4-mysql instal.at correctament" >>/script/registre.txt
+		echo "PHP7.4-mysql instal.at correctament" >>/var/logs/registres/install/glpi.log
 	else
 
 		echo -e "${Red}PHP7.4-mysql instal.lat incorrectament"
@@ -676,7 +675,7 @@ systemctl restart apache2 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Apache reiniciat correctament"
-	echo "Apache reiniciat correctament" >>/script/registre.txt
+	echo "Apache reiniciat correctament" >>/var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error al reiniciar apache"
@@ -698,8 +697,8 @@ else
 	mysql -u root -e "FLUSH PRIVILEGES;"
 	mysql -u root -e "exit"
 	echo -e "${Green}Base de dades creada correctament\n"
-	echo "Base de dades creada correctament" >>/script/registre.txt
+	echo "Base de dades creada correctament" >>/var/logs/registres/install/glpi.log
 fi
-echo "INSTALACIO DE GLPI FETA CORRECTAMENT" >>/script/registre.txt
+echo "INSTALACIO DE GLPI FETA CORRECTAMENT" >>/var/logs/registres/install/glpi.log
 echo -e "${BBlue}INSTALACIO DE GLPI FETA CORRECTAMENT\n"
 echo -e "${White}"
