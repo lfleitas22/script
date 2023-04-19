@@ -39,6 +39,8 @@ Cyan='\033[0;36m'
 
 Yellow='\033[0;32m'
 
+Normal='\033[0;0m'
+
 #Comprovacio usuari root
 echo -e " ______ _      _____ _____"
 echo -e "/ _____| |    |  __ \_   _|"
@@ -53,13 +55,13 @@ mkdir /var/logs/ 2>/dev/null
 mkdir /var/logs/registres/ 2>/dev/null
 mkdir /var/logs/registres/install/ 2>/dev/null
 
-echo -e "${Purple}Comprovacions preliminars\n"
+echo -e "${Purple}Comprovacions preliminars\n${Normal}"
 if [ $(whoami) == "root" ]; then
-	echo -e "${Cyan}Ets root, seguirem amb l'instalacio"
+	echo -e "${Cyan}Ets root, seguirem amb l'instalacio${Normal}"
 # Apartat b)
 	echo "Ets root, seguirem amb l'instalacio" >> /var/logs/registres/install/glpi.log
 else
-	echo -e "${Yellow}No ets root, resgistret com usuari root i torna a executar el script"
+	echo -e "${Yellow}No ets root, resgistret com usuari root i torna a executar el script${Normal}"
 # Apartat c)
   echo "No ets root, resgistret com usuari root i torna a executar el script" >> /var/logs/registres/install/errors.log
 	exit
