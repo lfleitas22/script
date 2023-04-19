@@ -31,9 +31,12 @@ echo "+---------------------------------------------+"
 # #nameserver 192.168.1.1
 
 # Colors 
-Purple='\033[0;35m'#Informació
-Cyan='\033[0;36m'#Correcte
-Yellow='\033[0;32m'#Errors
+#Informació 
+Purple='\033[0;35m'
+#Correcte 
+Cyan='\033[0;36m'
+#Errors
+Yellow='\033[0;32m'
 
 #Comprovacio usuari root
 echo -e " ______ _      _____ _____"
