@@ -132,9 +132,9 @@ else
         mysql -u root -e "exit"
         # Tornem a comprovar si existeix per assegurar-nos que s'ha creat.
         if [ -d "/var/lib/mysql/$dbname" ]; then
-                echo -e "${VERDE}La base de dades roundcube s'ha creat correctament.${NORMAL}"
+                echo -e "${VERDE}La base de dades moodle s'ha creat correctament.${NORMAL}"
         else
-                echo -e "${ROJO}Malauradament, la base de dades no s'ha creat correctament.${NORMAL}"
+                echo -e "${ROJO}Malauradament, la base de dades moodle no s'ha creat correctament.${NORMAL}"
                 exit
         fi
 fi
