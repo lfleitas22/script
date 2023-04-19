@@ -31,6 +31,7 @@ echo "+---------------------------------------------+"
 # #nameserver 192.168.1.1
 
 # Colors 
+# Apartat f) g) h)
 
 Purple='\033[0;35m'
 
@@ -63,4 +64,6 @@ else
   echo "No ets root, resgistret com usuari root i torna a executar el script" >> /var/logs/registres/install/errors.log
 	exit
 fi
+
+cat /etc/network/interfaces
 
