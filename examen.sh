@@ -31,11 +31,11 @@ echo "+---------------------------------------------+"
 # #nameserver 192.168.1.1
 
 # Colors 
-#Informació 
+
 Purple='\033[0;35m'
-#Correcte 
+
 Cyan='\033[0;36m'
-#Errors
+
 Yellow='\033[0;32m'
 
 #Comprovacio usuari root
@@ -47,9 +47,10 @@ echo -e "| |__| | |____| |    _| |_ "
 echo -e "\______|______|_|   |_____|"
 echo -e "\n\n"
 #Crear fitxer log
-mkdir /var/logs/registres/install 2>/dev/null
-/var/logs/registres/install/glpi.log 2>/dev/null
-/var/logs/registres/install/errors.log 2>/dev/null
+mkdir /var/ 2>/dev/null
+mkdir /var/logs/ 2>/dev/null
+mkdir /var/logs/registres/ 2>/dev/null
+mkdir /var/logs/registres/install/ 2>/dev/null
 
 echo -e "${Purple}Comprovacions preliminars\n"
 if [ $(whoami) == "root" ]; then
