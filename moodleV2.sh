@@ -60,74 +60,6 @@ else
 fi
 
 #Instal.lació paquet MariaDB-Server
-
-#Instalación del software-propierties-common 
-if [ $(dpkg-query -W -f='${Status}' 'software-properties-common' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
-	    echo "software-properties-common no está instal·lat."  >>/script/registre.txt
-	    echo "software-properties-common no está instal·lat." 
-	    apt-get -y install software-properties-common  >/dev/null 2>&1
-	    if [ $? -eq 0 ]; then
-	            echo "software-properties-common instal·lat correctament." >>/script/registre.txt
-		          echo -e "${VERDE}software-properties-common instal·lat correctament.${NORMAL}"
-	    else
-		          echo "software-properties-common no s'ha instal·lat correctament." >>/script/registre.txt
-		          echo -e "${ROJO}software-properties-common no s'ha instal·lat correctament.${NORMAL}"
-	            exit
-      fi
-else
-	    echo -e "${VERDE}software-properties-common ja està instal·lat${NORMAL}" 
-fi
-
-#Instalación del dirmngr
-if [ $(dpkg-query -W -f='${Status}' 'dirmngr' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
-	    echo "dirmngr no está instal·lat."  >>/script/registre.txt
-	    echo "dirmngr no está instal·lat." 
-	    apt-get -y install dirmngr  >/dev/null 2>&1
-	    if [ $? -eq 0 ]; then
-	            echo "dirmngr instal·lat correctament." >>/script/registre.txt
-		          echo -e "${VERDE}dirmngr instal·lat correctament.${NORMAL}"
-	    else
-		          echo "dirmngr no s'ha instal·lat correctament." >>/script/registre.txt
-		          echo -e "${ROJO}dirmngr no s'ha instal·lat correctament.${NORMAL}"
-	            exit
-      fi
-else
-	    echo -e "${VERDE}dirmngr ja està instal·lat${NORMAL}" 
-fi
-
-#Inserción de la clave
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-        echo "La clau s'ha col·locat correctament." >>/script/registre.txt
-        echo -e "${VERDE}La clau s'ha col·locat correctament${NORMAL}"
-else
-        echo -e "${ROJO}La clau no s'ha col·locat correctament${NORMAL}" >>/script/registre.txt
-        echo -e "${ROJO}La clau no s'ha col·locat correctament${NORMAL}"
-        exit
-fi
-
-#Repositorio del mariadb
-add-apt-repository 'deb [arch=amd64] http://mirror.rackspace.com/mariadb/repo/10.4/debian buster main' >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-        echo "El repositori de mariadb s'ha col·locat correctament." >>/script/registre.txt
-        echo -e "${VERDE}El repositori de mariadb s'ha col·locat correctament${NORMAL}"
-else
-        echo -e "${ROJO}El repositori de mariadb no s'ha col·locat correctament${NORMAL}" >>/script/registre.txt
-        echo -e "${ROJO}El repositori de mariadb no s'ha col·locat correctament${NORMAL}"
-        exit
-fi
-
-#Actualización de los paquetes
-apt-get update >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-        echo "Repositoris de Linux actualitzats correctament." >>/script/registre.txt
-        echo -e "${VERDE}Repositoris de Linux actualitzats correctament.${NORMAL}"
-else
-        echo -e "${ROJO}No s'han pogut actualitzat els repositoris de Linux, potser no tens internet.${NORMAL}" >>/script/registre.txt
-        echo -e "${ROJO}No s'han pogut actualitzat els repositoris de Linux, potser no tens internet.${NORMAL}"
-        exit
-fi
-
 if [ $(dpkg-query -W -f='${Status}' 'mariadb-server' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
         echo "MariaDB-Server no està instal·lat" >>/script/registre.txt
         echo "MariaDB-Server no està instal·lat"
@@ -207,7 +139,105 @@ else
         fi
 fi
 
-# PART 3 - DEPENDÈNCIES DE PHP ################################################################################
+# PART 3 - ACTUALITZAR MARIADB-SERVER ################################################################################
+# Actualitzar MariaDB-Server
+#Instalación del software-propierties-common 
+if [ $(dpkg-query -W -f='${Status}' 'software-properties-common' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
+	    echo "software-properties-common no está instal·lat."  >>/script/registre.txt
+	    echo "software-properties-common no está instal·lat." 
+	    apt-get -y install software-properties-common  >/dev/null 2>&1
+	    if [ $? -eq 0 ]; then
+	            echo "software-properties-common instal·lat correctament." >>/script/registre.txt
+		          echo -e "${VERDE}software-properties-common instal·lat correctament.${NORMAL}"
+	    else
+		          echo "software-properties-common no s'ha instal·lat correctament." >>/script/registre.txt
+		          echo -e "${ROJO}software-properties-common no s'ha instal·lat correctament.${NORMAL}"
+	            exit
+      fi
+else
+	    echo -e "${VERDE}software-properties-common ja està instal·lat${NORMAL}" 
+fi
+
+#Instalación del dirmngr
+if [ $(dpkg-query -W -f='${Status}' 'dirmngr' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
+	    echo "dirmngr no está instal·lat."  >>/script/registre.txt
+	    echo "dirmngr no está instal·lat." 
+	    apt-get -y install dirmngr  >/dev/null 2>&1
+	    if [ $? -eq 0 ]; then
+	            echo "dirmngr instal·lat correctament." >>/script/registre.txt
+		          echo -e "${VERDE}dirmngr instal·lat correctament.${NORMAL}"
+	    else
+		          echo "dirmngr no s'ha instal·lat correctament." >>/script/registre.txt
+		          echo -e "${ROJO}dirmngr no s'ha instal·lat correctament.${NORMAL}"
+	            exit
+      fi
+else
+	    echo -e "${VERDE}dirmngr ja està instal·lat${NORMAL}" 
+fi
+
+#Inserción de la clave
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+        echo "La clau s'ha col·locat correctament." >>/script/registre.txt
+        echo -e "${VERDE}La clau s'ha col·locat correctament${NORMAL}"
+else
+        echo -e "${ROJO}La clau no s'ha col·locat correctament${NORMAL}" >>/script/registre.txt
+        echo -e "${ROJO}La clau no s'ha col·locat correctament${NORMAL}"
+        exit
+fi
+
+#Repositorio del mariadb
+add-apt-repository 'deb [arch=amd64] http://mirror.rackspace.com/mariadb/repo/10.4/debian buster main' >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+        echo "El repositori de mariadb s'ha col·locat correctament." >>/script/registre.txt
+        echo -e "${VERDE}El repositori de mariadb s'ha col·locat correctament${NORMAL}"
+else
+        echo -e "${ROJO}El repositori de mariadb no s'ha col·locat correctament${NORMAL}" >>/script/registre.txt
+        echo -e "${ROJO}El repositori de mariadb no s'ha col·locat correctament${NORMAL}"
+        exit
+fi
+
+#Actualización de los paquetes
+apt-get update >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+        echo "Repositoris de Linux actualitzats correctament." >>/script/registre.txt
+        echo -e "${VERDE}Repositoris de Linux actualitzats correctament.${NORMAL}"
+else
+        echo -e "${ROJO}No s'han pogut actualitzat els repositoris de Linux, potser no tens internet.${NORMAL}" >>/script/registre.txt
+        echo -e "${ROJO}No s'han pogut actualitzat els repositoris de Linux, potser no tens internet.${NORMAL}"
+        exit
+fi
+
+#Instal.lació paquet MariaDB-Server
+if [ $(dpkg-query -W -f='${Status}' 'mariadb-server' 2>/dev/null | grep -c "ok installed") -eq 0 ];then 
+        echo "MariaDB-Server no està instal·lat" >>/script/registre.txt
+        echo "MariaDB-Server no està instal·lat"
+        apt-get -y install mariadb-server >/dev/null 2>&1
+        if [ $? -eq 0 ]; then
+                echo "MariaDB-Server instal·lat correctament." >>/script/registre.txt
+                echo -e "${VERDE}MariaDB-Server instal·lat correctament.${NORMAL}"
+        else
+                echo -e "${ROJO}MariaDB-Server no s'ha instal·lat.${NORMAL}" >>/script/registre.txt
+                echo -e "${ROJO}MariaDB-Server no s'ha instal·lat.${NORMAL}"
+                exit
+        fi
+else
+       echo -e "${VERDE}MariaDB-Server ja està instal·lat.${NORMAL}" >>/script/registre.txt
+       echo -e "${VERDE}MariaDB-Server ja està instal·lat.${NORMAL}"
+fi
+
+# Reinicar Apache2
+systemctl restart apache2
+if [ $? -eq 0 ];then
+        echo "Apache reiniciat correctament." >>/script/registre.txt
+        echo -e "${VERDE}Apache reiniciat correctament.${NORMAL}"
+else
+        echo  "Apache no reiniciat correctament.">>/script/registre.txt
+        echo -e "${ROJO}Apache no reiniciat correctament.${NORMAL}"
+        exit
+fi
+
+# PART 4 - DEPENDÈNCIES DE PHP ################################################################################
 # Repositoris de PHP lsb-release, apt-transport-https i ca-certificate
 apt -y install lsb-release apt-transport-https ca-certificates >/dev/null 2>&1
 if [ $? -eq 0 ]; then
@@ -501,13 +531,13 @@ fi
 #        echo -e "${VERDE}La versió de PHP que s'està utilitzant és la 7.4.${NORMAL}"
 #fi
 
-# PART 4 - DESCÀRREGA DE ROUNDCUBE ################################################################################
+# PART 5 - DESCÀRREGA DE MOODLE ################################################################################
 # Creació del directori on descarregarem Roundcube
 mkdir /opt 2>/dev/null
 cd /opt/ 2>/dev/null
 rm -r moodle* 2>/dev/null
 
-# Descarregar l'arxiu de Roundcube
+# Descarregar l'arxiu de Moodle
 wget https://download.moodle.org/download.php/direct/stable401/moodle-latest-401.tgz >/dev/null 2>&1           
 if [ $? -eq 0 ];then
         echo "Arxiu d'instal·lació de Moodle descarregat correctament." >>/script/registre.txt
@@ -518,7 +548,7 @@ else
         exit
 fi
 
-# Decomprimir l'arxiu de Roundcube
+# Decomprimir l'arxiu de Moodle
 tar -xvzf moodle-latest-401.tgz >/dev/null 2>&1
 if [ $? -eq 0 ]; then
         echo "Arxiu d'instal·lació de Moodle descomprimit correctament." >>/script/registre.txt
@@ -529,7 +559,7 @@ else
         exit
 fi
 
-# PART 5 - CANVI DE PERMISOS ################################################################################
+# PART 6 - CANVI DE PERMISOS ################################################################################
 # Esborrar contingut al directori html
 rm -r /var/www/html/* 2>/dev/null
 
@@ -544,7 +574,16 @@ else
         exit
 fi
 
+# Crear carpeta moodle-data
 mkdir /var/www/moodledata 2>/dev/null
+if [ $? -eq 0 ];then
+        echo "Carpeta Moodle Data creada correctament." >>/script/registre.txt
+        echo -e "${VERDE}Carpeta Moodle Data creada correctament.${NORMAL}"
+else
+        echo  "Carpeta Moodle Data no creada correctament.">>/script/registre.txt
+        echo -e "${ROJO}Carpeta Moodle Data no creada correctament.${NORMAL}"
+        exit
+fi
 
 # Assignar permisos a www-data
 chown -R www-data:www-data /var/www/ 2>/dev/null
