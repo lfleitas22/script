@@ -266,7 +266,7 @@ tar zxvf glpi-10.0.7.tgz >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 
 	echo -e "${Green}Descompresio correcta\n"
-	echo "Descompresio correcta" >>/script//var/logs/registres/install/glpi.log
+	echo "Descompresio correcta" >>/var/logs/registres/install/glpi.log
 else
 
 	echo -e "${Red}Error de descompresio"
